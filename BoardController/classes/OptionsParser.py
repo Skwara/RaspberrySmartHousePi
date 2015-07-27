@@ -25,6 +25,8 @@ class OptionsParser:
                             help="Sets specified relay state", metavar=("RELAY", "STATE"))
         parser.add_argument("--get_relay", nargs=1, type=int, choices=Constants.relays,
                             help="Prints specified relay state", metavar="RELAY")
+        parser.add_argument("--get_temperature", action="store_true",
+                            help="Prints current temperature")
         self.arguments = parser.parse_args()
 
     @property
@@ -38,3 +40,7 @@ class OptionsParser:
     @property
     def relay_to_print(self):
         return self.arguments.get_relay
+
+    @property
+    def print_current_temperature(self):
+        return self.arguments.get_temperature
