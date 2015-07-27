@@ -12,5 +12,9 @@ if options_parser.relay_and_value_to_set:
 if options_parser.relay_to_print:
     print("Printing relay {}".format(options_parser.relay_to_print))
 
-if options_parser.print_current_temperature:
+if options_parser.current_temperature:
     print("Printing current temperature")
+
+if options_parser.time_interval_temperature:
+    print("Printing time interval temperature from {} to {}".format(options_parser.time_interval_temperature[0],
+                                                                    options_parser.time_interval_temperature[1]))
