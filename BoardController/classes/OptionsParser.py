@@ -25,16 +25,16 @@ class OptionsParser:
                             help="Sets specified relay state", metavar=("RELAY", "STATE"))
         parser.add_argument("--get_relay", nargs=1, type=int, choices=Constants.relays,
                             help="Prints specified relay state", metavar="RELAY")
-        self.arguments = vars(parser.parse_args())
+        self.arguments = parser.parse_args()
 
     @property
     def relay_to_switch(self):
-        return self.arguments['switch_relay'][0] if self.arguments['switch_relay'] is not None else None
+        return self.arguments.switch_relay
 
     @property
     def relay_and_value_to_set(self):
-        return self.arguments['set_relay'][0:2] if self.arguments['set_relay'] is not None else None
+        return self.arguments.set_relay
 
     @property
     def relay_to_print(self):
-        return self.arguments['get_relay'][0] if self.arguments['get_relay'] is not None else None
+        return self.arguments.get_relay
