@@ -1,5 +1,6 @@
 import argparse
-from BoardController.classes.Constants import Constants
+
+from classes.Constants import Constants
 
 
 class ValidateSetRelay(argparse.Action):

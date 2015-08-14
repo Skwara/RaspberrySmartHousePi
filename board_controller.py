@@ -1,5 +1,5 @@
-from BoardController.classes.BoardController import BoardController
-from BoardController.classes.OptionsParser import OptionsParser
+from classes.BoardController import BoardController
+from classes.OptionsParser import OptionsParser
 
 options_parser = OptionsParser()
 
