@@ -1,4 +1,5 @@
 from subprocess import call, check_output
+import sys
 
 from classes.Constants import Constants
 
@@ -26,7 +27,7 @@ class BoardController:
 
     @staticmethod
     def get_current_temperature():
-        temp_output = str(check_output(["python", "scripts/tmp.py"], universal_newlines=True)).replace("\n", "")
+        temp_output = str(check_output(["python", sys.path[0] + "/scripts/tmp.py"], universal_newlines=True)).replace("\n", "")
         return temp_output.split(" ")
 
     @staticmethod

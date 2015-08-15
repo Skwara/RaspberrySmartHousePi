@@ -1,8 +1,10 @@
 import sqlite3
+import sys
+
 
 class DatabaseHandler:
     def __init__(self):
-        self.db_name = "temp_db.db"
+        self.db_name = sys.path[0] + "/temp_db.db"
         self.create_database()
 
     def create_database(self):
