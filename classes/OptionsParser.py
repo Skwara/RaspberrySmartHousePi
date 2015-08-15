@@ -32,6 +32,8 @@ class OptionsParser:
                             help="Prints temperature for specified time interval", metavar=("FROM", "TO"))
         parser.add_argument("--save_temperature", action="store_true",
                             help="Saves current temperature to database")
+        parser.add_argument("--readable_timestamps", "-r", action="store_true",
+                            help="Displays timestamps in a readable form")
         self.arguments = parser.parse_args()
 
     @property
@@ -57,3 +59,7 @@ class OptionsParser:
     @property
     def save_temperature(self):
         return self.arguments.save_temperature
+
+    @property
+    def readable_timestamps(self):
+        return self.arguments.readable_timestamps
