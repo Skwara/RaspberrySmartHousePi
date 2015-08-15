@@ -17,14 +17,20 @@ if options_parser.relay_to_print:
 
 if options_parser.current_temperature:
     temp = BoardController.get_current_temperature()
-    print(temp[0] + " " + datetime.fromtimestamp(float(temp[1])).strftime("%H:%M %Y-%m-%d"))
+    if options_parser.readable_timestamps:
+        print(temp[0] + " " + datetime.fromtimestamp(float(temp[1])).strftime("%H:%M %Y-%m-%d"))
+    else:
+        print(temp[0] + " " + temp[1])
 
 if options_parser.time_interval_temperature:
     database_handler = DatabaseHandler()
     temp_tab = database_handler.get_time_interval_temperature(options_parser.time_interval_temperature[0],
                                                              options_parser.time_interval_temperature[1])
     for temp in temp_tab:
-        print("{} {}".format(temp[0], temp[1]))
+        if options_parser.readable_timestamps:
+            print("{} {}".format(temp[0], datetime.fromtimestamp(float(temp[1])).strftime("%H:%M %Y-%m-%d")))
+        else:
+            print("{} {}".format(temp[0], temp[1]))
 
 if options_parser.save_temperature:
     temp = BoardController.get_current_temperature()
