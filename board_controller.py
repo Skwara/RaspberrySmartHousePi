@@ -13,7 +13,7 @@ if options_parser.relay_to_print:
     print(BoardController.get_relay(options_parser.relay_to_print[0]))
 
 if options_parser.current_temperature:
-    BoardController.get_current_temperature()
+    print(BoardController.get_current_temperature())
 
 if options_parser.time_interval_temperature:
     BoardController.get_time_interval_temperature(options_parser.time_interval_temperature[0],

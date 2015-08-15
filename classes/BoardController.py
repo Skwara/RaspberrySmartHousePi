@@ -26,7 +26,8 @@ class BoardController:
 
     @staticmethod
     def get_current_temperature():
-        print("Printing current temperature")
+        temp_output = str(check_output(["python", "scripts/tmp.py"], universal_newlines=True)).replace("\n", "")
+        return temp_output
 
     @staticmethod
     def get_time_interval_temperature(from_timestamp, to_timestamp):
