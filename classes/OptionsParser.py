@@ -30,6 +30,8 @@ class OptionsParser:
                             help="Prints current temperature")
         parser.add_argument("--get_time_interval_temperature", nargs=2, type=int,
                             help="Prints temperature for specified time interval", metavar=("FROM", "TO"))
+        parser.add_argument("--save_temperature", action="store_true",
+                            help="Saves current temperature to database")
         self.arguments = parser.parse_args()
 
     @property
@@ -51,3 +53,7 @@ class OptionsParser:
     @property
     def time_interval_temperature(self):
         return self.arguments.get_time_interval_temperature
+
+    @property
+    def save_temperature(self):
+        return self.arguments.save_temperature
