@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+from datetime import datetime, timedelta
 import os
 import glob
 import time
@@ -31,7 +32,9 @@ def read_temp():
 
     return temp_c
 
+def get_timestamp(dt):
+    return int((dt - datetime(1970, 1, 1)).total_seconds())
 
 for i in range(1):
-    print(read_temp()), int(time.time())
+    print(read_temp()), get_timestamp(datetime.utcnow().replace(second=0, microsecond=0))
     time.sleep(1)
