@@ -28,7 +28,7 @@ class DatabaseHandler:
         connection = sqlite3.connect(self.db_name)
         c = connection.cursor()
         c.execute('''SELECT * FROM temperatures
-                     WHERE timestamp >= {} AND timestamp <= {}'''.format(from_timestamp, to_timestamp))
+                     WHERE timestamp > {} AND timestamp <= {}'''.format(from_timestamp, to_timestamp))
         temp_tab = c.fetchall()
         connection.close()
         return temp_tab
