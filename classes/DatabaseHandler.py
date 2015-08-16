@@ -66,5 +66,5 @@ class DatabaseHandler:
             from_datetime += timedelta(minutes=1)
             current_timestamp = DatabaseHandler.__get_timestamp(from_datetime)
             if index == len(temp_tab) or current_timestamp < temp_tab[index][1]:
-                temp_tab.insert(index, ["-", current_timestamp])
+                temp_tab.insert(index, ["?", current_timestamp])
             index += 1

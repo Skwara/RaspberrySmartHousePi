@@ -7,7 +7,7 @@ from classes.OptionsParser import OptionsParser
 
 def print_temperature(temp_struct):
     if options_parser.readable_timestamps:
-        print("{:<6} {}".format(temp_struct[0],
+        print("{:<7} {}".format(temp_struct[0],
                                 datetime.fromtimestamp(float(temp_struct[1])).strftime("%H:%M %Y-%m-%d")))
     else:
         print("{} {}".format(temp_struct[0], temp_struct[1]))
