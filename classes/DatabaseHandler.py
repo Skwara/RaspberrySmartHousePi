@@ -1,3 +1,4 @@
+from datetime import datetime, timedelta, timezone
 import sqlite3
 import sys
 
@@ -31,3 +32,26 @@ class DatabaseHandler:
         temp_tab = c.fetchall()
         connection.close()
         return temp_tab
+
+    def get_last_period_temperature(self, period_string):
+        connection = sqlite3.connect(self.db_name)
+        c = connection.cursor()
+        from_datetime = datetime.utcnow()
+        if period_string == "HOUR":
+            from_datetime -= timedelta(hours=1)
+        elif period_string == "DAY":
+            from_datetime -= timedelta(days=1)
+        elif period_string == "WEEK":
+            from_datetime -= timedelta(days=7)
+        elif period_string == "MONTH":
+            from_datetime -= timedelta(days=30)
+        c.execute('''SELECT * FROM temperatures
+                     WHERE timestamp >= {} AND timestamp <= {}'''.format(self.__get_timestamp(from_datetime),
+                                                                         self.__get_timestamp(datetime.now())))
+        temp_tab = c.fetchall()
+        connection.close()
+        return temp_tab
+
+    @staticmethod
+    def __get_timestamp(dt):
+        return int((dt - datetime(1970, 1, 1)) / timedelta(seconds=1))

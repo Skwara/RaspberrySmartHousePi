@@ -7,9 +7,9 @@ from classes.OptionsParser import OptionsParser
 
 def print_temperature(temp_struct):
     if options_parser.readable_timestamps:
-        print(temp_struct[0] + " " + datetime.fromtimestamp(float(temp_struct[1])).strftime("%H:%M %Y-%m-%d"))
+        print("{:<6} {}".format(temp_struct[0], datetime.fromtimestamp(float(temp_struct[1])).strftime("%H:%M %Y-%m-%d")))
     else:
-        print(temp_struct[0] + " " + temp_struct[1])
+        print("{} {}".format(temp_struct[0], temp_struct[1]))
 
 
 options_parser = OptionsParser()
@@ -31,6 +31,12 @@ if options_parser.time_interval_temperature:
     database_handler = DatabaseHandler()
     temp_tab = database_handler.get_time_interval_temperature(options_parser.time_interval_temperature[0],
                                                               options_parser.time_interval_temperature[1])
+    for temp in temp_tab:
+        print_temperature(temp)
+
+if options_parser.last_period_temperature:
+    database_handler = DatabaseHandler()
+    temp_tab = database_handler.get_last_period_temperature(options_parser.last_period_temperature[0])
     for temp in temp_tab:
         print_temperature(temp)
 
