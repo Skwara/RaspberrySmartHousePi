@@ -47,8 +47,8 @@ class DatabaseHandler:
             from_datetime -= timedelta(days=30)
         now = datetime.utcnow().replace(second=0, microsecond=0)
         c.execute('''SELECT * FROM temperatures
-                     WHERE timestamp >= {} AND timestamp <= {}'''.format(self.__get_timestamp(from_datetime),
-                                                                         self.__get_timestamp(now)))
+                     WHERE timestamp > {} AND timestamp <= {}'''.format(self.__get_timestamp(from_datetime),
+                                                                        self.__get_timestamp(now)))
         temp_tab = c.fetchall()
         if not without_filling:
             self.__fill_missing_data(temp_tab, from_datetime, now)
