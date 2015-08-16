@@ -36,6 +36,8 @@ class OptionsParser:
                             help="Saves current temperature to database")
         parser.add_argument("--readable_timestamps", "-r", action="store_true",
                             help="Displays timestamps in a readable form")
+        parser.add_argument("--without_filling", "-w", action="store_true",
+                            help="Turns off filling missing data")
         self.arguments = parser.parse_args()
 
     @property
@@ -69,3 +71,7 @@ class OptionsParser:
     @property
     def readable_timestamps(self):
         return self.arguments.readable_timestamps
+
+    @property
+    def without_filling(self):
+        return self.arguments.without_filling

@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 import sqlite3
 import sys
 
@@ -33,7 +33,7 @@ class DatabaseHandler:
         connection.close()
         return temp_tab
 
-    def get_last_period_temperature(self, period_string):
+    def get_last_period_temperature(self, period_string, without_filling=False):
         connection = sqlite3.connect(self.db_name)
         c = connection.cursor()
         from_datetime = datetime.utcnow().replace(second=0, microsecond=0)
@@ -50,7 +50,8 @@ class DatabaseHandler:
                      WHERE timestamp >= {} AND timestamp <= {}'''.format(self.__get_timestamp(from_datetime),
                                                                          self.__get_timestamp(now)))
         temp_tab = c.fetchall()
-        self.__fill_missing_data(temp_tab, from_datetime, now)
+        if not without_filling:
+            self.__fill_missing_data(temp_tab, from_datetime, now)
         connection.close()
         return temp_tab
 
